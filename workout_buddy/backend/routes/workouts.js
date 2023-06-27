@@ -6,7 +6,7 @@ router.get('/', (req, res) => {
   res.json({ message: 'Gets all workouts' })
 })
 
-router.get('/:id', (res, req) => {
+router.get('/:id', (req, res) => {
   res.json({ message: 'singular workout' })
 })
 

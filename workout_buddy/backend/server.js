@@ -2,11 +2,20 @@ require('dotenv').config()
 // require dotenv and directly invoke the config method
 
 const express = require('express')
-// Line 3 requires the express package.
+// Line 4 requires the express package.
+
+const workoutRoutes = require('./routes/workouts')
+// Line 7 requires our exported routes
 
 const workoutApp = express()
 // Creates an express app by calling the funct express()
 // const can be defined as anything.
+
+workoutApp.use(express.json())
+// Further middleware added
+// express.json allows us to send json format files as bodies in our HTTP requests
+// Looks at each request and if a body is present it attaches it to the req
+// allows req.body to be called.
 
 workoutApp.use((req, res, next) => {
   console.log(req.path, req.method)
@@ -17,14 +26,18 @@ workoutApp.use((req, res, next) => {
 // next has be run/called at the end of this function.
 // if next is not invoked then the function will not move onto the next Route/piece of middleware
 
-// Each route defined below is technically also middleware
-workoutApp.get('/', (req, res) => {
-  res.json({ message: 'Welcome' })
-})
+workoutApp.use('/api/workouts', workoutRoutes)
 
-workoutApp.get('/anotherpage', (req, res) => {
-  res.json({ message: 'another message' })
-})
+// Each route defined below is technically also middleware
+// After importing the router the original routes defined below are now redundant.
+// I have kept these routes commented out for reference only.
+// workoutApp.get('/', (req, res) => {
+//   res.json({ message: 'Welcome' })
+// })
+
+// workoutApp.get('/anotherpage', (req, res) => {
+//   res.json({ message: 'another message' })
+// })
 // routes defined as above
 
 workoutApp.listen(process.env.PORT, () => {
