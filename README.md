@@ -1,6 +1,8 @@
 # Feel-The-MERN
 
 
+Note: Add all versions of node_modules to .gitignore.
+
 Setting up a MERN project from scratch:
 * Ensure Node is installed: ```node -v```
 * ```nvm use node```
@@ -17,4 +19,9 @@ Backend:
 * ```cd backend```
 * ```npm install express```
 * 
+
+
+Frontend
+* ```npx create-react-app <INSERT_NAME>```
+* npm install react-router-dom
 
