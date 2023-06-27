@@ -8,6 +8,16 @@ const workoutApp = express()
 // Creates an express app by calling the funct express()
 // const can be defined as anything.
 
+workoutApp.use((req, res, next) => {
+  console.log(req.path, req.method)
+  next()
+})
+// Middleware is any code that executes between sending a request to the server and getting a response
+// .use defines some global middleware which will be run each time a request is made
+// next has be run/called at the end of this function.
+// if next is not invoked then the function will not move onto the next Route/piece of middleware
+
+// Each route defined below is technically also middleware
 workoutApp.get('/', (req, res) => {
   res.json({ message: 'Welcome' })
 })
