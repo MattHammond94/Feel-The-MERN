@@ -4,8 +4,14 @@ require('dotenv').config()
 const express = require('express')
 // Line 4 requires the express package.
 
+const mongoose = require('mongoose')
+// run npm install mongoose before requiring
+// mongoose is similar to sql - it is an ODM(Object data modeling)library used for communicating with DB
+// Allows us to use methods to read and write database documents(documents are individual elements inside a MongoDB database)
+// Also declares models and schemas to create these documents with certain params met.
+
 const workoutRoutes = require('./routes/workouts')
-// Line 7 requires our exported routes
+// Line 13 requires our exported routes
 
 const workoutApp = express()
 // Creates an express app by calling the funct express()
@@ -40,9 +46,22 @@ workoutApp.use('/api/workouts', workoutRoutes)
 // })
 // routes defined as above
 
-workoutApp.listen(process.env.PORT, () => {
-  console.log(`listening on port ${process.env.PORT}`)
-})
+mongoose.connect(process.env.MONGO_URI)
+  .then(() => {
+    // Moved from line 63 into here:
+    workoutApp.listen(process.env.PORT, () => {
+      console.log(`connected to DB and listening on port ${process.env.PORT}`)
+    })
+  })
+  .catch((error) => {
+    console.log(error)
+  })
+// This line connects to our mongoDB database which has been stored in .env
+// As it takes time it is an async function and will return a Promise.
+
+// workoutApp.listen(process.env.PORT, () => {
+//   console.log(`listening on port ${process.env.PORT}`)
+// })
 // Port number can be defined as number. The console log here is used to show in the terminal which port is being run.
 
 // Running node Server.js from the command line starts Server.
