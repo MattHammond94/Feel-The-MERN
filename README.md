@@ -34,7 +34,7 @@ If we dont want to hardcode any constants which may contain sensitive/private in
 
 Adding .env to backend:
 * ```touch .env```
-* ```npm install dotenv
+* ```npm install dotenv```
 * add ```PORT=<PORT_NO>  MONGO_DB_URI=<MONGO_URI>``` within .env file along with other sensitive files.
 
 This will allow you to access these variables as ENVIRONMENT variables from a env file. 
