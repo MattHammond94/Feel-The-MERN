@@ -8,9 +8,14 @@
     },
     {
       "title": "Opening Party!",
-      "body": "Another blog entry",
+      "body": "Matts blog entry",
       "author": "Matt",
       "id": 2
+    },
+    { "title": "Another blog entry", 
+      "body": "Another one", 
+      "author": "Dj Khaled", 
+      "id": 3
     }
   ]
 }
