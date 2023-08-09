@@ -3,26 +3,35 @@ import BlogList from './BlogList';
 
 const Home = () => {
   const [blogs, setBlogs] = useState(null);
-
-  const handleDelete = (id) => {
-    const newBlogs = blogs.filter(post => post.id !== id)
-    setBlogs(newBlogs);
-  }
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     fetch('http://localhost:8000/blogs')
     .then(res => {
+      console.log(res);
+      if(!res.ok) {
+        throw Error('Unable to fetch data - Nope!')
+      }
       return res.json();
     })
     .then((data) => {
       console.log(data);
       setBlogs(data);
+      setIsLoading(false);
+      setError(null);
+    })
+    .catch(err => {
+      setIsLoading(false);
+      setError(err.message);
     })
   }, []);
 
   return ( 
     <div className="home">
-      {blogs && <BlogList blogs={blogs} title="All posts!" handleDelete={handleDelete}/>}
+      { error && <div>{ error }</div> }
+      {isLoading && <div>Loading...</div>}
+      {blogs && <BlogList blogs={blogs} title="All posts!"/>}
     </div>
   );
 }
