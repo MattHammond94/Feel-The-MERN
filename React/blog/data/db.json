@@ -12,10 +12,29 @@
       "author": "Matt",
       "id": 2
     },
-    { "title": "Another blog entry", 
-      "body": "Another one", 
-      "author": "Dj Khaled", 
+    {
+      "title": "Another blog entry",
+      "body": "Another one",
+      "author": "Dj Khaled",
       "id": 3
+    },
+    {
+      "title": "chiddy bang",
+      "body": "gang gang",
+      "author": "Rick Ross",
+      "id": 4
+    },
+    {
+      "title": "Im a little teapot",
+      "body": "Teapot lady",
+      "author": "Hayley",
+      "id": 5
+    },
+    {
+      "title": "Jimmy John 2000",
+      "body": "Thats right, you heard me.",
+      "author": "Matt",
+      "id": 6
     }
   ]
 }
