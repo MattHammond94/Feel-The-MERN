@@ -9,3 +9,13 @@ Content-Type: application/json
  "name": "Matt",
  "password": "password123"
 }
+
+###
+
+POST http://localhost:420/users/login
+Content-Type: application/json
+
+{
+ "name": "Matt",
+ "password": "password"
+}
