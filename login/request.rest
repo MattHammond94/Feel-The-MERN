@@ -1,1 +1,11 @@
 GET http://localhost:420/users
+
+###
+
+POST http://localhost:420/users
+Content-Type: application/json
+
+{
+ "name": "Matt",
+ "password": "password123"
+}
