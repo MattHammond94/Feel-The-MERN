@@ -6,6 +6,10 @@ app.use(express.json())
 
 const users = []
 
+app.get('/', (req, res) => {
+  res.send("Home Page")
+})
+
 app.get('/users', (req, res) => {
   res.json(users)
 })
