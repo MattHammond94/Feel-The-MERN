@@ -11,7 +11,7 @@ app.get('/', (req, res) => {
   res.send("Home Page")
 })
 
-app.get('/users', (req, res) => {
+app.get('/users', auth, (req, res, next) => {
   res.json(users)
 })
 
@@ -45,7 +45,17 @@ app.post("/users/login", async (req, res) => {
 
 function logger(req, res, next) {
   console.log('MiddleWare-Lesson')
+  console.log(req.originalUrl)
   next()
+}
+
+// This is single action middleware passed to GET /users
+function auth(req, res, next) {
+  if (req.query.admin === 'true') {
+    next()
+  } else {
+    res.send('No auth')
+  }
 }
 
 app.listen(420, console.log("Listening on port 420"))
