@@ -3,6 +3,7 @@ const app = express()
 const bcrypt = require('bcrypt')
 
 app.use(express.json())
+app.use(logger)
 
 const users = []
 
@@ -41,5 +42,10 @@ app.post("/users/login", async (req, res) => {
     res.status(500).send()
   }
 })
+
+function logger(req, res, next) {
+  console.log('MiddleWare-Lesson')
+  next()
+}
 
 app.listen(420, console.log("Listening on port 420"))
