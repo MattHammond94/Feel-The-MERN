@@ -24,8 +24,9 @@ app.get('/', (req, res) => {
   res.send("Homepage boiiii")
 })
 
-app.get('/posts', (req, res) => {
-  res.json(posts)
+app.get('/posts', authenticateToken, (req, res) => {
+  req.user
+  res.json(posts.filter(post => post.username === req.user.name))
 })
 
 app.post('/login', (req, res) => { 
@@ -37,6 +38,18 @@ app.post('/login', (req, res) => {
   const accessToken = JWT.sign(user, process.env.ACCESS_TOKEN_SECRET)
   res.json({accessToken: accessToken })
 })
+
+function authenticateToken(req, res, next) {
+  const authHeader = req.headers['authorization']
+  const token = authHeader && authHeader.split(" ")[1]
+  if (token === null) return res.sendStatus(401)
+
+  JWT.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
+    if (err) return res.sendStatus(403)
+    req.user = user
+    next()
+  })
+}
 
 function logger(req, res, next) {
   console.log(req.originalUrl)

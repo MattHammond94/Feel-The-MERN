@@ -1,4 +1,5 @@
 GET http://localhost:444/posts
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiTWF0dCIsImlhdCI6MTY5MjAyMTY4N30.IULm63Fvo4-Bjz7Oa1zxQ30x-t0275PtVX5nHfkP7ao
 
 ###
 
