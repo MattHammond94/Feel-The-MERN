@@ -41,7 +41,9 @@ app.post('/login', (req, res) => {
 
 function authenticateToken(req, res, next) {
   const authHeader = req.headers['authorization']
-  const token = authHeader && authHeader.split(' ')[1]
+  console.log(authHeader)
+  const token = authHeader && authHeader.split(" ")[1]
+  console.log(token)
   if (token === null) return res.sendStatus(401)
 
   JWT.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
@@ -56,4 +58,4 @@ function logger(req, res, next) {
   next()
 }
 
-app.listen(4444, console.log("Listening on port 4444"))
+app.listen(1000, console.log("Listening on port 1000"))
