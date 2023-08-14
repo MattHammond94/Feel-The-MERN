@@ -1,10 +1,19 @@
 GET http://localhost:4444/posts
-Authorization: Bearer 
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiTWF0dCIsImlhdCI6MTY5MjAyODI4MCwiZXhwIjoxNjkyMDI4MzI1fQ.ol6X9IeqBqonH8CoUocekWSMYwDXUSPGY7ga7A-hfZ4
+
+###
+
+POST http://localhost:1000/token
+Content-Type: application/json
+
+{
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiTWF0dCIsImlhdCI6MTY5MjAyODM5Nn0.Tgo2X4fbrAvf3LADH9RQLhQqLpIfzl1fZbueMCKResA"
+}
 
 ###
 
 POST http://localhost:1000/login
-  Content-Type: application/json
+Content-Type: application/json
 
   {
     "username": "Matt"

@@ -2,10 +2,23 @@ require('dotenv').config()
 
 const express = require('express')
 const app = express()
+const JWT = require('jsonwebtoken')
 
 app.use(express.json())
 
-const JWT = require('jsonwebtoken')
+let refreshTokens = []
+
+app.post('/token', (req, res) => {
+  const refreshToken = req.body.token
+  if (refreshToken === null) return res.sendStatus(401)
+  if (!refreshTokens.includes(refreshToken)) return res.sendStatus(403)
+  console.log(refreshTokens)
+  JWT.verify(refreshToken, process.env.REFRESH_TOKEN_SECRET, (err, user) => {
+    if (err) return res.sendStatus(403)
+    const accessToken = generateAccessToken({ name: user.name })
+    res.json({ accessToken: accessToken })
+  })
+})
 
 app.post('/login', (req, res) => { 
   // First of all authenticate user as per previous project in login folder
@@ -15,11 +28,12 @@ app.post('/login', (req, res) => {
 
   const accessToken = generateAccessToken(user)
   const refreshToken = JWT.sign(user, process.env.REFRESH_TOKEN_SECRET)
+  refreshTokens.push(refreshToken)
   res.json({accessToken: accessToken, refreshToken: refreshToken })
 })
 
 function generateAccessToken(user) { 
-  return JWT.sign(user, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '15s' })
+  return JWT.sign(user, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '45s' })
 }
 
 app.listen(1000, console.log("Listening on port 1000(Auth Server)"))
