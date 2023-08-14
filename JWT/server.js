@@ -1,7 +1,7 @@
 require('dotenv').config()
 
 const express = require('express')
-app = express()
+const app = express()
 
 app.use(express.json())
 app.use(logger)
@@ -27,16 +27,6 @@ app.get('/', (req, res) => {
 app.get('/posts', authenticateToken, (req, res) => {
   req.user
   res.json(posts.filter(post => post.username === req.user.name))
-})
-
-app.post('/login', (req, res) => { 
-  // First of all authenticate user as per previous project in login folder
-  
-  const username = req.body.username
-  const user = { name: username }
-
-  const accessToken = JWT.sign(user, process.env.ACCESS_TOKEN_SECRET)
-  res.json({accessToken: accessToken })
 })
 
 function authenticateToken(req, res, next) {

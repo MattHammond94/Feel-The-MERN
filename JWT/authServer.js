@@ -1,28 +1,12 @@
 require('dotenv').config()
 
 const express = require('express')
-app = express()
+const app = express()
 
 app.use(express.json())
 app.use(logger)
 
 const JWT = require('jsonwebtoken')
-// require('crypto').randomBytes(64).toString('hex') => Run in node to return random list of chars
-
-const posts = [
-  {
-    username: 'Matt',
-    title: 'Post 1'
-  },
-  {
-    username: 'Hayley',
-    title: 'Hayleys post'
-  }
-]
-
-app.get('/', (req, res) => {
-  res.send("Homepage boiiii")
-})
 
 app.get('/posts', authenticateToken, (req, res) => {
   req.user
@@ -53,9 +37,4 @@ function authenticateToken(req, res, next) {
   })
 }
 
-function logger(req, res, next) {
-  console.log(req.originalUrl)
-  next()
-}
-
-app.listen(1000, console.log("Listening on port 1000"))
+app.listen(1000, console.log("Listening on port 1000(Auth Server)"))
