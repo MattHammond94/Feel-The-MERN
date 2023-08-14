@@ -4,12 +4,23 @@ app = express()
 app.use(express.json())
 app.use(logger)
 
+const posts = [
+  {
+    username: 'Matt',
+    title: 'Post 1'
+  },
+  {
+    username: 'Hayey',
+    title: 'Hayelys post'
+  }
+]
+
 app.get('/', (req, res) => {
   res.send("Homepage boiiii")
 })
 
-app.get('/page', (req, res) => {
-  res.send("A second page!")
+app.get('/posts', (req, res) => {
+  res.json(posts)
 })
 
 function logger(req, res, next) {
