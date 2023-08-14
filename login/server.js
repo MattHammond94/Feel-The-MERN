@@ -4,6 +4,7 @@ const bcrypt = require('bcrypt')
 
 app.use(express.json())
 app.use(logger)
+app.use(testLogger)
 
 const users = []
 
@@ -15,6 +16,11 @@ app.get('/users', auth, (req, res) => {
   console.log(`User is admin = ${req.admin}`)
   console.log("Users page")
   res.json(users)
+})
+
+app.get('/test', (req, res) => {
+  console.log("Now this logic runs in the path/route")
+  res.send("A testing page")
 })
 
 app.post('/users', async (req, res) => {
@@ -45,6 +51,13 @@ app.post("/users/login", async (req, res) => {
   }
 })
 
+// Calling next first in your functions allows logs/logic to run last in the chain of Events
+function testLogger(req, res, next) {
+  console.log("This happens first")
+  next()
+  console.log("Now this happens")
+}
+
 function logger(req, res, next) {
   console.log('MiddleWare-Lesson')
   console.log(req.originalUrl)
@@ -56,9 +69,9 @@ function auth(req, res, next) {
   if (req.query.admin === 'true') {
     req.admin = true
     next()
-  } else {
-    res.send('No auth')
+    return
   }
+    res.send('No auth')
 }
 
 app.listen(420, console.log("Listening on port 420"))
