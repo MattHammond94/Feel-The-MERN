@@ -11,7 +11,9 @@ app.get('/', (req, res) => {
   res.send("Home Page")
 })
 
-app.get('/users', auth, (req, res, next) => {
+app.get('/users', auth, (req, res) => {
+  console.log(`User is admin = ${req.admin}`)
+  console.log("Users page")
   res.json(users)
 })
 
@@ -52,6 +54,7 @@ function logger(req, res, next) {
 // This is single action middleware passed to GET /users
 function auth(req, res, next) {
   if (req.query.admin === 'true') {
+    req.admin = true
     next()
   } else {
     res.send('No auth')
