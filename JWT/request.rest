@@ -2,4 +2,9 @@ GET http://localhost:444/posts
 
 ###
 
-POST
+POST http://localhost:444/login
+  Content-Type: application/json
+
+  {
+    "username": "Matt"
+  }

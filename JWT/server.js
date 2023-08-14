@@ -1,8 +1,13 @@
+require('dotenv').config()
+
 const express = require('express')
 app = express()
 
 app.use(express.json())
 app.use(logger)
+
+const JWT = require('jsonwebtoken')
+// require('crypto').randomBytes(64).toString('hex') => Run in node to return random list of chars
 
 const posts = [
   {
@@ -21,6 +26,16 @@ app.get('/', (req, res) => {
 
 app.get('/posts', (req, res) => {
   res.json(posts)
+})
+
+app.post('/login', (req, res) => { 
+  // First of all authenticate user as per previous project in login folder
+  
+  const username = req.body.username
+  const user = { name: username }
+
+  const accessToken = JWT.sign(user, process.env.ACCESS_TOKEN_SECRET)
+  res.json({accessToken: accessToken })
 })
 
 function logger(req, res, next) {
