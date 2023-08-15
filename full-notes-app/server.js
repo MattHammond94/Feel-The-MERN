@@ -9,6 +9,8 @@ const cors = require('cors')
 const corsOptions = require('./config/corsOptions')
 const PORT = process.env.PORT || 4000
 
+console.log(process.env.NODE_ENV)
+
 app.use(logger)
 app.use(express.json())
 app.use(cookieParser())
