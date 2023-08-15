@@ -2,13 +2,16 @@ const express = require('express')
 const app = express()
 const path = require('path')
 const { logger } = require('./middleware/logger')
-const { errorHandler } = require('./middleware/errorHandler')
+const errorHandler = require('./middleware/errorHandler')
 const cookieParser = require('cookie-parser')
+const cors = require('cors')
 const PORT = process.env.PORT || 4000
 
 app.use(logger)
 app.use(express.json())
 app.use(cookieParser())
+app.use(cors()) //allows everything to be used publicly (Public API's return resources to any origin point)
+// use cors options to control/secure which origins our API will respond to.
 
 // This line tells the server where to locate static files such as CSS/images
 // path imported on line 3
