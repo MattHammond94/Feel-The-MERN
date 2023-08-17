@@ -1,1 +1,4 @@
 A brand new text file
+
+
+This is a new line

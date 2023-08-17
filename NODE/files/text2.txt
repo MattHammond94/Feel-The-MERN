@@ -1,5 +1,1 @@
-LOADS OF TEXTXBS MATESS YESH
-Twxzt
-MORE TEXTXBS
-Ok
-nah
+This is the text 2 file thats being read
