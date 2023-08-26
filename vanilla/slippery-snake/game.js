@@ -8,7 +8,7 @@ function main(currentTime) {
   const secondsSinceLastRender = (currentTime - lastRenderTime) / 1000
   if (secondsSinceLastRender < 1 / SNAKE_SPEED) return
 
-  console.log('Render')
+  
   lastRenderTime = currentTime
 
   update()
@@ -22,5 +22,6 @@ function update() {
 }
 
 function draw() {
+  gameBoard.innerHTML= ''
   drawSnake(gameBoard)
 }
