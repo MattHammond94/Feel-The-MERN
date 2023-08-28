@@ -8,8 +8,8 @@ const SignIn = () => {
     <div className='sign-in-container'>
       <form>
         <h1>Log In</h1>
-        <input type="email" placeholder="Enter your email"></input>
-        <input type="password" placeholder="Enter your password"></input>
+        <input type="email" placeholder="Enter your email" value={email}></input>
+        <input type="password" placeholder="Enter your password" value={password}></input>
       </form>
     </div>
   )
