@@ -7,9 +7,9 @@ export default function CareersDetails() {
 
   return (
     <div className="career-details">
-      <h2>Career details for { career.title }</h2>
-      <p>starting salary  { career.salary }</p>
-      <p>Location { career.location }</p>
+      <h2>Career details for: { career.title }</h2>
+      <p>starting salary: { career.salary }</p>
+      <p>Location: { career.location }</p>
       <div className="details">
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus commodi eum asperiores doloremque voluptas possimus corrupti perferendis et? 
           Cumque iure ratione et eveniet est ex?</p>
