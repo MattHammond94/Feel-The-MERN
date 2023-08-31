@@ -16,7 +16,27 @@ app.get("/", (req, res) => {
 
 app.post("/", async (req, res) => {
   console.log(req.body);
-  res.json("Data received")
+  const { image } = req.body;
+
+  const uploadedImage = await cloudinary.uploader.upload(image,
+  { 
+    upload_preset: 'unsigned_uploads',
+    allowed_formats: ['png', 'jpg', 'jpeg', 'svg', 'ico', 'jfif', 'webp']
+   }, 
+  function(error, result) {
+    if(error) {
+      console.log(error)
+    } else {
+      console.log(result); 
+    }
+  });
+
+  try {
+    res.status(200).json(uploadedImage)
+  } catch(err) {
+    console.log(err)
+  }
+
 })
 
 app.listen(port, console.log(`listening on port ${port}`))
