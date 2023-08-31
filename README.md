@@ -55,3 +55,12 @@ mongoose.connect(databaseURI) - This would be an async function and would theref
 
 Formatting Dates(common):
 * ```npm install date-fns```
+
+
+### Using imports(ES modules) instead of requiring.
+
+You can use the import approach to adding packages/libraries in the backend by adding ```"type": "module",```
+to the top level of the npm package object.
+This allows the same type of importing for both frontend and backend to keep consistency.
+This is commonJS vs ES6.
+
