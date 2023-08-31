@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import axios from 'axios';
 
 function App() {
   const [file, setFile] = useState('');
@@ -23,8 +24,17 @@ function App() {
     previewFiles(file)
   }
 
-  const handleSubmit = (e) => {
-    // console.log(e.target.files);
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const result = await axios.post("http://localhost:4444/", {
+      image: image
+    })
+
+    try { 
+      console.log(result.data);
+    } catch(err) {
+      console.log(err);
+    }
   }
 
   return (
