@@ -10,6 +10,8 @@ app.use(cors());
 app.use(express.json({limit: '50mb'}));
 app.use(express.urlencoded({extended: true, limit: '50mb'}));
 
+// Lines 10 + 11 have been extended to include with config to ensure we accept larger payloads now that our jsons may include BASE64 
+
 app.get("/", (req, res) => {
   res.send("Welcome to the homepage")
 })
@@ -26,9 +28,9 @@ app.post("/", async (req, res) => {
   function(error, result) {
     if(error) {
       console.log(error)
-    } else {
-      console.log(result); 
     }
+
+    console.log(result); 
   });
 
   try {

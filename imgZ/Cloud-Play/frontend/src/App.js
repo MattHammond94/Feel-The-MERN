@@ -22,6 +22,7 @@ function App() {
 
   const handleChange = (e) => {
     const file = e.target.files[0]
+    console.log(file)
     setFile(file);
     previewFiles(file)
   }
@@ -31,6 +32,8 @@ function App() {
     const result = await axios.post("http://localhost:4444/", {
       image: image
     })
+
+    console.log(result)
 
     try { 
       const uploadedImg = result.data.public_id;
