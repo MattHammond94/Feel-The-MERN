@@ -1,9 +1,11 @@
 import { useState } from 'react'
 import axios from 'axios';
+import Img from './Img';
 
 function App() {
   const [file, setFile] = useState('');
   const [image, setImage] = useState('');
+  const [uploadedImg, setUploadedImg] = useState('');
 
   const previewFiles = (file) => {
     const reader = new FileReader();
@@ -31,7 +33,8 @@ function App() {
     })
 
     try { 
-      console.log(result.data);
+      const uploadedImg = result.data.public_id;
+      setUploadedImg(uploadedImg);
     } catch(err) {
       console.log(err);
     }
@@ -52,6 +55,7 @@ function App() {
       </div>
       <div className="img">
         <img src={image} alt="" />
+        <Img uploadedImg={uploadedImg}/>
       </div>
     </>
   );
