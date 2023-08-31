@@ -1,8 +1,9 @@
+import UploadImage from "./components/UploadImage";
 
 function App() {
   return (
     <div>
-      <h2>cloud</h2>
+      <UploadImage />
     </div>
   );
 }
