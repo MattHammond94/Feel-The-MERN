@@ -11,9 +11,10 @@ function App() {
     }
 
     reader.onloadend = () => {
-      console.log(image);
       setImage(reader.result)
     }
+    
+    console.log(image);
   }
 
   const handleChange = (e) => {
@@ -35,6 +36,7 @@ function App() {
           <br />
           <input type="file" id="fileInput" onChange={e => handleChange(e)} required
           accept="image/png, image/jpeg, image/jpg, image/jfif" />
+          <br />
           <button className="butt">Submit</button>
         </form>
       </div>

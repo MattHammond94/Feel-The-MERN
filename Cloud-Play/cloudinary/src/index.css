@@ -3,8 +3,7 @@
   --secondary: #2b3452;
 }
 
-
-.img {
-  width: 10px;
-  height: 10px;
+.img img {
+  width: 500px;
+  height: 500px;
 }
