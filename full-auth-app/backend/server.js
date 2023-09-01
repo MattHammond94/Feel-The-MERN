@@ -12,6 +12,8 @@ import { logger } from './middleware/logMiddleware.js';
 connectDB();
 
 const app = express();
+app.use(express.json());
+app.use(express.urlencoded({ extended: true })); // => Allows to send form data (see "x-www-form") in postman body
 
 app.use(logger);
 
