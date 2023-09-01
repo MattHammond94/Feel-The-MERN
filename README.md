@@ -42,6 +42,11 @@ This will allow you to access these variables as ENVIRONMENT variables from a en
 * ```require('dotenv').config()```
 * You can then call ```process.env.PORT``` to return => ```<PORT_NO>```
 
+Adding async handler: 
+* ```npm i express-async-handler```
+* Wrapper for paths in controller
+* prevents having to use multiple try/catch blocks for each await. 
+
 ## Database(Backend continued)
 Start off by creating a database using either mongoDB atlas or compass GUI. You can then copy your database URI into the .env file as an ENV variable. 
 * ```npm install mongoose``` - mongoose = ODM library (Object data modelling)
