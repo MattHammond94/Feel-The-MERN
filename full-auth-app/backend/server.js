@@ -5,8 +5,11 @@ const port = process.env.PORT || 4444
 
 import userRoutes from './routes/userRoutes.js'
 import { errorHandler, notFound } from './middleware/errorMiddleware.js';
+import { logger } from './middleware/logMiddleware.js';
 
 const app = express();
+
+app.use(logger);
 
 app.use('/api/users', userRoutes);
 
