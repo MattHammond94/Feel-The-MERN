@@ -29,6 +29,14 @@ userSchema.pre('save', async function(next) {
   this.password = await bcrypt.hash(this.password, salt);
 });
 
+// .methods allows us to add methods directly to the User obj.
+// We define a method matchPasswords that uses the bcrypt compare.
+// bcrypt compare takes two args and compares them. 
+// We can now call .matchPasswords(password) on a User.
+userSchema.methods.matchPasswords = async function(enteredPassword) {
+  return await bcrypt.compare(enteredPassword, this.password);
+}
+
 const User = mongoose.model('User', userSchema);
 
 export default User;
