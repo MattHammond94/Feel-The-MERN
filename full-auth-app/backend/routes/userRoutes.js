@@ -12,8 +12,8 @@ router.post('/', registerUser);
 router.post('/auth', authUser);
 router.post('/auth/logout', logoutUser);
 
-// router.get('/profile', getUserProfile);
-// router.patch('/profile', updateUserProfile);
+// router.get('/profile', protect, getUserProfile);
+// router.patch('/profile', protect, updateUserProfile);
 // The below does the same as the two lines above.
 router.route('/profile').get(protect, getUserProfile).put(protect, updateUserProfile);
 
