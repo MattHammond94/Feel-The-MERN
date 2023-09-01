@@ -3,6 +3,8 @@ import dotenv from 'dotenv';
 dotenv.config();
 const port = process.env.PORT || 4444
 
+import cookieParser from 'cookie-parser';
+
 import connectDB from './config/db.js';
 
 import userRoutes from './routes/userRoutes.js'
@@ -16,6 +18,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true })); // => Allows to send form data (see "x-www-form") in postman body
 
 app.use(logger);
+
+app.use(cookieParser());  //cookieParser => 
 
 app.use('/api/users', userRoutes);
 
