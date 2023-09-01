@@ -3,9 +3,13 @@ import dotenv from 'dotenv';
 dotenv.config();
 const port = process.env.PORT || 4444
 
+import connectDB from './config/db.js';
+
 import userRoutes from './routes/userRoutes.js'
 import { errorHandler, notFound } from './middleware/errorMiddleware.js';
 import { logger } from './middleware/logMiddleware.js';
+
+connectDB();
 
 const app = express();
 
