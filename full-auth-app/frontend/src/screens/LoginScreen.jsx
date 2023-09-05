@@ -6,6 +6,7 @@ import FormContainer from '../components/FormContainer';
 import { useLoginMutation } from '../slices/usersApiSlice';
 import { setCredentials } from '../slices/authSlice';
 import { toast } from 'react-toastify';
+import Loader from '../components/Loader';
 
 const LoginScreen = () => {
   const [email, setEmail]= useState('');
@@ -48,6 +49,8 @@ const LoginScreen = () => {
             onChange={ (e) => setEmail(e.target.value) }
           />
         </Form.Group>
+
+        { isLoading && <><Loader /></> }
 
         <Form.Group className='my-2' controlId='password'>
           <Form.Label>Password</Form.Label>
