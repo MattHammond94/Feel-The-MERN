@@ -26,7 +26,7 @@ const RegisterScreen = () => {
             type='text'
             placeholder='Enter name'
             value={ name }
-            onchange={ (e) => setName(e.target.value) }
+            onChange={ (e) => setName(e.target.value) }
           />
         </Form.Group>
 
@@ -36,7 +36,7 @@ const RegisterScreen = () => {
             type='email'
             placeholder='Enter email'
             value={ email }
-            onchange={ (e) => setEmail(e.target.value) }
+            onChange={ (e) => setEmail(e.target.value) }
           />
         </Form.Group>
 
@@ -46,7 +46,7 @@ const RegisterScreen = () => {
             type='password'
             placeholder='Enter password'
             value={ password }
-            onchange={ (e) => setPassword(e.target.value) }
+            onChange={ (e) => setPassword(e.target.value) }
           />
         </Form.Group>
 
@@ -56,7 +56,7 @@ const RegisterScreen = () => {
             type='password'
             placeholder='Confirm password'
             value={ confirmPassword }
-            onchange={ (e) => setConfirmPassword(e.target.value) }
+            onChange={ (e) => setConfirmPassword(e.target.value) }
           />
         </Form.Group>
 

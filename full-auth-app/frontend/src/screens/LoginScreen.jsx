@@ -23,7 +23,7 @@ const LoginScreen = () => {
             type='email'
             placeholder='Enter email'
             value={ email }
-            onchange={ (e) => setEmail(e.target.value) }
+            onChange={ (e) => setEmail(e.target.value) }
           />
         </Form.Group>
 
@@ -33,7 +33,7 @@ const LoginScreen = () => {
             type='password'
             placeholder='Enter password'
             value={ password }
-            onchange={ (e) => setPassword(e.target.value) }
+            onChange={ (e) => setPassword(e.target.value) }
           />
         </Form.Group>
 
