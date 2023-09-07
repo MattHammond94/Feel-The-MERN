@@ -80,11 +80,26 @@ function removeTodo() {
   .catch(err => console.error(err));
 }
 
-// SIMULTANEOUS DATA
-function getData() {
-  console.log('Simultaneous Request');
-}
+// SIMULTANEOUS DATA:
 
+// Returns multiple sets of data at one time. Prevents having to send one REQ for one set of data then another.
+// Returns array with X amount of object depending on how many REQ were made.
+function getData() {
+  axios.all([
+    axios.get('https://jsonplaceholder.typicode.com/todos?_limit=5'),
+    axios.get('https://jsonplaceholder.typicode.com/posts?_limit=5')
+  ])
+    // .then(res => {
+    //   console.log(res[0]);
+    //   console.log(res[1]);
+    //   showOutput(res[1]);
+    // })
+
+    // An alternate .then to the one above using spread allows both responses to be defined and then returned accordingly
+    .then(axios.spread((todos, posts) => showOutput(posts)))
+    .catch(err => console.error(err));
+}
+ 
 // CUSTOM HEADERS
 function customHeaders() {
   console.log('Custom Headers');
