@@ -26,7 +26,13 @@ function getTodos() {
   // As the above is a get request you do not need to specify get as GET is default. 
   // Also params can be added to the endpoint for further refactoring.
 
-  axios('https://jsonplaceholder.typicode.com/todos?_limit=5')
+  // axios('https://jsonplaceholder.typicode.com/todos?_limit=5')
+  //   .then(res => showOutput(res))
+  //   .catch(err => console.error(err));
+
+  // Can also add a timeout - This sets the max amount of time to wait for a RES
+  // timeout is added in MS and will return a timeout error if exceeded.
+  axios('https://jsonplaceholder.typicode.com/todos?_limit=5', { timeout: 5000 })
     .then(res => showOutput(res))
     .catch(err => console.error(err));
 }
@@ -174,12 +180,51 @@ function errorHandling() {
         console.error(err.message);
       }
     });
+
+
+    // The below we pass a validate status obj as a second arg to our get REQ
+    //  Validate status takes a function. 
+    //   This defines which error codes to respond to. As we have set as 500 it will not respond to the error received.
+
+
+    // axios.get('https://jsonplaceholder.typicode.com/todosZZZZ', {
+    //   validateStatus: function(status) {
+    //     return status < 500; // reject only is status is greater or === 500
+    //   }
+    // })
+    // .then(res => showOutput(res))
+    // .catch(err => {
+    //   if (err.response) {
+    //     // Server responded with a status over the 200 range - 200 range => Success range
+    //     console.log(err.response.data);
+    //     console.log(err.response.status);
+    //     console.log(err.response.headers);
+    //   } else if (err.request) {
+    //     // request was made but no response
+    //     console.error(err.request);
+    //   } else {
+    //     console.error(err.message);
+    //   }
+    // });
 }
 
 // ===============================================================
 // CANCEL TOKEN
 function cancelToken() {
-  
+  const controller = new AbortController();
+
+  axios.get('https://jsonplaceholder.typicode.com/todos', {
+    signal: controller.signal
+  })
+    .catch(function (e) {
+      if (axios.isCancel(e)) {
+       console.error('Operation canceled');
+      } else {
+        
+      }
+    })
+
+  controller.abort();
 }
 
 // ===============================================================
@@ -200,7 +245,15 @@ axios.interceptors.request.use(
 );
 
 // ===============================================================
-// AXIOS INSTANCES
+// AXIOS INSTANCES:
+
+// Can create your own instance of axios and add custom settings as below:
+
+const axiosInstance = axios.create({
+  baseURL: 'https://jsonplaceholder.typicode.com'
+});
+
+axiosInstance.get('/comments').then(res => showOutput(res));
 
 
 // ===============================================================
