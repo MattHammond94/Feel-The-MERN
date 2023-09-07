@@ -100,12 +100,30 @@ function getData() {
     .catch(err => console.error(err));
 }
  
-// CUSTOM HEADERS
+// CUSTOM HEADERS:
+
+// Commonly used for storing tokens/auth keys - would need to be defined in a config obj and then passed
+// to axios.post as a second arg => see below.
+
 function customHeaders() {
-  console.log('Custom Headers');
+  const config = {
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: 'some-token'
+    }
+  }
+
+  axios.post('https://jsonplaceholder.typicode.com/todos', {
+    title: 'todo with an auth token',
+    completed: false
+  }, config)
+  .then(res => showOutput(res))
+  .catch(err => console.error(err));
 }
 
-// TRANSFORMING REQUESTS & RESPONSES
+// TRANSFORMING REQUESTS & RESPONSES:
+
+
 function transformResponse() {
   console.log('Transform Response');
 }
@@ -120,7 +138,21 @@ function cancelToken() {
   console.log('Cancel Token');
 }
 
-// INTERCEPTING REQUESTS & RESPONSES
+// INTERCEPTING REQUESTS & RESPONSES:
+
+// The interceptor below is similar to logger middleware but within the browser. 
+// console logs each req
+
+axios.interceptors.request.use(
+  config => {
+    console.log(`${config.method.toUpperCase()} request sent to ${config.url} at ${new Date().getTime()}`);
+
+    return config
+  },
+  error => {
+    return Promise.reject(error);
+  }
+);
 
 // AXIOS INSTANCES
 
