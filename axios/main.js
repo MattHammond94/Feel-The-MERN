@@ -1,3 +1,9 @@
+// AXIOS GLOBALS:
+
+// Globals allow us to ensure a header is always present in our config.
+axios.defaults.headers.common['X-Auth-Token'] = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c';
+
+// ===============================================================
 // GET REQUEST:
 
 function getTodos() {
@@ -25,6 +31,7 @@ function getTodos() {
     .catch(err => console.error(err));
 }
 
+// ===============================================================
 // POST REQUEST:
 
 function addTodo() {
@@ -48,6 +55,7 @@ function addTodo() {
   .catch(err => console.error(err));
 }
 
+// ===============================================================
 // PUT/PATCH REQUEST:
 
 // A put request replaces the entire selected item thus replacing any attributes
@@ -72,6 +80,7 @@ function updateTodo() {
   .catch(err => console.error(err));
 }
 
+// ===============================================================
 // DELETE REQUEST:
 
 function removeTodo() {
@@ -80,6 +89,7 @@ function removeTodo() {
   .catch(err => console.error(err));
 }
 
+// ===============================================================
 // SIMULTANEOUS DATA:
 
 // Returns multiple sets of data at one time. Prevents having to send one REQ for one set of data then another.
@@ -100,6 +110,7 @@ function getData() {
     .catch(err => console.error(err));
 }
  
+// ===============================================================
 // CUSTOM HEADERS:
 
 // Commonly used for storing tokens/auth keys - would need to be defined in a config obj and then passed
@@ -121,23 +132,57 @@ function customHeaders() {
   .catch(err => console.error(err));
 }
 
+// ===============================================================
 // TRANSFORMING REQUESTS & RESPONSES:
 
+// Allows you to transfrom both your REQ and RES dependent on if you wanted them formatted a specific way etc.
 
 function transformResponse() {
-  console.log('Transform Response');
+  const options = {
+    method: 'post',
+    url: 'https://jsonplaceholder.typicode.com/todos',
+    data: {
+      title: 'Hello world'
+    },
+    transformResponse: axios.defaults.transformResponse.concat(data => {
+      data.title = data.title.toUpperCase();
+      return data;
+    })
+  };
+
+  // Ensures the title attribute in the data object is always returned in CAPS
+
+  axios(options).then(res => showOutput(res));
 }
 
-// ERROR HANDLING
+// ===============================================================
+// ERROR HANDLING:
+
 function errorHandling() {
-  console.log('Error Handling');
+  axios.get('https://jsonplaceholder.typicode.com/todosZZZZ')
+    .then(res => showOutput(res))
+    .catch(err => {
+      if (err.response) {
+        // Server responded with a status over the 200 range - 200 range => Success range
+        console.log(err.response.data);
+        console.log(err.response.status);
+        console.log(err.response.headers);
+      } else if (err.request) {
+        // request was made but no response
+        console.error(err.request);
+      } else {
+        console.error(err.message);
+      }
+    });
 }
 
+// ===============================================================
 // CANCEL TOKEN
 function cancelToken() {
-  console.log('Cancel Token');
+  
 }
 
+// ===============================================================
 // INTERCEPTING REQUESTS & RESPONSES:
 
 // The interceptor below is similar to logger middleware but within the browser. 
@@ -154,8 +199,11 @@ axios.interceptors.request.use(
   }
 );
 
+// ===============================================================
 // AXIOS INSTANCES
 
+
+// ===============================================================
 // Show output in browser
 function showOutput(res) {
   document.getElementById('res').innerHTML = `
