@@ -24,5 +24,9 @@
 }
 
 .btn:hover {
-  transform: translateY(-10px);
+  transform: translateX(-30px);
+}
+
+.img:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
 }
