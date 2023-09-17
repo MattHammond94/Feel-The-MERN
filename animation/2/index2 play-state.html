@@ -10,30 +10,37 @@
       background-color: pink;
       height: 50%;
       width: 50%;
+      border-radius: 50%;
 
-      transition: 1s ease-in;
+      animation: left-to-right 1s ease-in forwards infinite;
     }
 
     .parent:hover .child {
-      animation: left-to-right 1s ease-in forwards 5 alternate;
+      animation-play-state: paused;
     }
 
-    /* The 5 specifies the number of repititions/iterations the animation will run. */
-    /* After the 5("iteration-count") you can specify the direction of the animation here we use "Alternate" */
-    /* Can use "infinite" instead of the 5 to make animation run indefinitely */
-    /* After the direction you can specify a delay in the instance below the delay is 3 seconds */
-    /* animation: left-to-right 1s ease-in forwards 5 alternate 3s; */
+    /* Moving the animation to the child element makes the animation run indefinitely but adding a playstate of pause to hover allows us to pause the animation when hovered over */
 
     @keyframes left-to-right {
       0% {
         transform: translateX(0);
+        background-color: pink;
+      }
+
+      12% {
+        transform: translateY(50%)
       }
 
       25% {
         transform: translateY(100%);
       }
 
+      37% {
+        transform: translateX(50%) translateY(100%)
+      }
+
       50% {
+        background-color: azure;
         transform: translateX(100%) translateY(100%);
       }
 
@@ -41,7 +48,12 @@
         transform: translateX(100%);
       }
 
+      87% {
+        transform: translateX(50%);
+      }
+
       100% {
+        background-color: aqua;
         transform: translateX(0);
       }
     }
