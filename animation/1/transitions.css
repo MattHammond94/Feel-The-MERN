@@ -16,15 +16,27 @@
   font-family: 'Oswald', sans-serif;
   font-family: 'Roboto Mono', monospace;
   border-radius: 5px;
+  cursor: pointer;
 
-  transition-property: transform;
+  /* transition-property: transform;
   transition-duration: 0.3s;
   transition-timing-function: ease;
-  transition-delay: 0s;
+  transition-delay: 0s; */
+
+  /* the below (line 26) is the same as lines 20-23 */
+  /* Note: ease and 0s delay are both defaults so can also be removed */
+  /* coma seperating the properties allows you to specify different animation effects for each element in a transition. */
+  /* can simple write all like this: <transition: all 0.3s;> for the same effect */
+  transition: transform 0.3s ease 0s, background-color 0.3s, color 0.3s, border 0.3s;
 }
+
+/* transition property defines which property the effects are being applied to - in this case we only has a transform property in our hover*/
 
 .btn:hover {
   transform: translateX(-30px);
+  background-color: pink;
+  color: white;
+  border: 10px solid #F078FC;
 }
 
 .img:hover {
