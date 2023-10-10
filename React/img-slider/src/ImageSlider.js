@@ -25,7 +25,7 @@ const ImageSlider = ({slides}) => {
     fontSize: '50px',
     color: "#fff",
     zIndex: 1,
-    cursor: "pointer"
+    cursor: "pointer",
   }
 
   const rightArrowStyles = {

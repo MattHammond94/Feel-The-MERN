@@ -12,6 +12,10 @@ code {
     monospace;
 }
 
+div {
+  user-select: none;
+}
+
 .main-container {
   display: flex;
   justify-content: center;
@@ -23,4 +27,32 @@ code {
   position: absolute;
   top: 100px;
   left: 10px;
+  padding: 20px;
+  background-color: darkslategrey;
+  color: white;
+  border: none;
+  border-radius: 5%;
+  cursor: pointer;
+}
+
+.openModalBtn:hover {
+  background-color: dimgrey;
+}
+
+.modalBackground {
+  height: 100vh;
+  width: 100vw;
+  background-color: rgb(200, 200, 200);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.closeBtn {
+  background-color: green;
+  color: white;
+  border: none;
+  border-radius: 10%;
+  
+  cursor: pointer;
 }
