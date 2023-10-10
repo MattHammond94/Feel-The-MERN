@@ -17,11 +17,13 @@ function App() {
   };
 
   return (
-    <div>
+    <div className="main-container">
       <h1>Image Slider</h1>
       <div style={containerStyles}>
         <ImageSlider slides={slides} />
       </div>
+
+      <button className="openModalBtn">Open</button>
     </div>
   );
 }
