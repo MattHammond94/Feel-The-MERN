@@ -20,6 +20,11 @@ const userSchema = mongoose.Schema({
   timestamps: true
 });
 
+// .pre is a schema method that allows us to pass middleware functions to run before each specified event.
+// In this case our event is passed as the first argument 'save' so for each insatnce of user when save is called this middleware will run
+// we check to see if the password that belongs to the schema which is being saved(this) has been modified.
+// On first creation it wont have been modified therefore the remainder of the code will be run hashing the password with bcrpyt
+
 userSchema.pre('save', async function(next) {
   if(!this.isModified('password')) {
     next()
@@ -28,6 +33,7 @@ userSchema.pre('save', async function(next) {
   const salt = await bcrypt.genSalt(10);
   this.password = await bcrypt.hash(this.password, salt);
 });
+
 
 // .methods allows us to add methods directly to the User obj.
 // We define a method matchPasswords that uses the bcrypt compare.
