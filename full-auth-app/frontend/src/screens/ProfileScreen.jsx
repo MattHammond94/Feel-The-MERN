@@ -35,7 +35,7 @@ const ProfileScreen = () => {
           name,
           email,
           password
-        }).unwrap();
+        }).unwrap();  //unwrap() unwraps a promise to return its raw data.
         dispatch(setCredentials({ ...res }));
         toast.success('Profile details updated!')
       } catch (err) {

@@ -16,7 +16,7 @@ const Header = () => {
 
   const logoutHandler = async () => {
     try { 
-      await logoutApiCall().unwrap();
+      await logoutApiCall().unwrap();  //unwrap() unwraps a promise to return its raw data.
       dispatch(logout());
       navigate('/');
     } catch (err) {

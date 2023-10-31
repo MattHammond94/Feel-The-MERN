@@ -28,9 +28,9 @@ const LoginScreen = () => {
   const submitHandler = async (e) => {
     e.preventDefault();
     try {
-      const res = await login({ email, password }).unwrap();
-      dispatch(setCredentials({...res}));
-      navigate('/');
+      const res = await login({ email, password }).unwrap();  //unwrap() unwraps a promise to return its raw data.
+      dispatch(setCredentials({...res}));  //useDispatch has to be used if we are calling a non async function. 
+      navigate('/');                       //setCredetials is a basic arrow function whereas login is imported as a hook/mutation so does not require dispatch can simply use await.
     } catch (err) {
      toast.error(err?.data?.message || err.error)
     }
