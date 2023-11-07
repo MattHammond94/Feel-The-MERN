@@ -57,7 +57,10 @@ function App() {
         </form>
       </div>
       <div className="img">
+        <h1>This image is a base64 convert of uploaded file:</h1>
         <img src={image} alt="" />
+        <br />
+        <h1>This image came from cloudinary:</h1>
         <Img uploadedImg={uploadedImg}/>
       </div>
     </>
